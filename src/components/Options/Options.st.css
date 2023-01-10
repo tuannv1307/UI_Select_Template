@@ -1,7 +1,5 @@
 @st-import [D40, D50, D60, D10-90] from "mgz-ui/dist/src/Foundation/stylable/colors.st.css";
 
-.root {}
-
 .loading {
     -st-states: isLoadingInput;
     color: value(D40) !important;

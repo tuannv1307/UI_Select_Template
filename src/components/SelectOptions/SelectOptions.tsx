@@ -1,5 +1,4 @@
 import {
-  ChangeEvent,
   KeyboardEvent,
   MouseEvent,
   memo,
@@ -15,8 +14,10 @@ import axios from "axios";
 import Button from "mgz-ui/dist/src/Button";
 import DismissSmall from "wix-ui-icons-common/DismissSmall";
 import Dismiss from "wix-ui-icons-common/Dismiss";
-import PlayFilled from "wix-ui-icons-common/PlayFilled";
+import ChevronUpLarge from "wix-ui-icons-common/ChevronUpLarge";
+import ChevronDownLarge from "wix-ui-icons-common/ChevronDownLarge";
 import Text from "mgz-ui/dist/src/Text";
+import IconButton from "mgz-ui/dist/src/IconButton";
 import {
   UiSelect,
   deleteOptionSelected,
@@ -139,9 +140,8 @@ const SelectOptions = ({
       dispatch(addSelectoptions(newArrSelected));
   }, [arrSelectedData, dispatch, flatArrDataSelect, typeSelect]);
 
-  const hanldeOnchangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
-    const label = e.target.value;
-    setInputSearch(label);
+  const hanldeOnchangeSearch = (value?: string) => {
+    value && setInputSearch(value);
     setIsFirstLoading(false);
   };
 
@@ -280,7 +280,6 @@ const SelectOptions = ({
             />
           </div>
         )}
-
         <div
           className={st(classes.showData, { isShowOptions })}
           onClick={handleShowOptions}
@@ -324,7 +323,7 @@ const SelectOptions = ({
                             }
                           />
                         }
-                        dataHook="delete-item"
+                        data-hook="delete-item"
                       >
                         {opt?.label}
                       </Button>
@@ -337,9 +336,9 @@ const SelectOptions = ({
             <Text className={st(classes.text)}>Select...</Text>
           )}
 
-          <button className={st(classes.toggleSelect, { isShowOptions })}>
-            <PlayFilled className={st(classes.svgToggleDown)} />
-          </button>
+          <IconButton className={st(classes.toggleSelect, { isShowOptions })}>
+            {isShowOptions ? <ChevronDownLarge /> : <ChevronUpLarge />}
+          </IconButton>
         </div>
 
         <div

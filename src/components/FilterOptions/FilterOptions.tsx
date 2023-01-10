@@ -1,9 +1,9 @@
-import { ChangeEvent, memo, useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import Input from "mgz-ui/dist/src/Input";
 import Text from "mgz-ui/dist/src/Text";
-import { Search } from "@wix/wix-ui-icons-common";
+import Search from "wix-ui-icons-common/Search";
 import {
   DATA_UI,
   UiSelect,
@@ -18,7 +18,7 @@ export type FilterOptionsProps = {
   isSearchOnline?: boolean;
   flatArrDataSelect?: DATA_UI[];
   inputSearch?: string;
-  hanldeOnchangeSearch?: (e: ChangeEvent<HTMLInputElement>) => void;
+  hanldeOnchangeSearch?: (value?: string) => void;
   isClearable?: boolean;
   isSearchable?: boolean;
   isDisabled?: boolean;
@@ -74,17 +74,22 @@ const FilterOptions = ({
           )}
 
           {isSearchable && (
-            <Input
-              suffix={<Search className={st(classes.inconSearch)} />}
-              size="medium"
-              className={st(classes.inputFilter)}
-              placeholder="Search..."
-              onChange={hanldeOnchangeSearch}
-              value={inputSearch}
-              ref={refInputFilter}
-              disabled={isDisabled}
-              dataHook="input-search"
-            />
+            <div className={classes.searchWapper}>
+              <Search className={st(classes.inconSearch)} />
+              <Input
+                size="medium"
+                className={st(classes.inputFilter)}
+                placeholder="Search..."
+                onChange={(e) =>
+                  _.isFunction(hanldeOnchangeSearch) &&
+                  hanldeOnchangeSearch(e.target.value)
+                }
+                value={inputSearch}
+                ref={refInputFilter}
+                disabled={isDisabled}
+                dataHook="input-search"
+              />
+            </div>
           )}
 
           {inputSearch !== "" && (

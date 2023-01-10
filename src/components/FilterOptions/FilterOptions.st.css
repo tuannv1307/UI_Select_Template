@@ -107,9 +107,14 @@
     color: value(B20);
     height: 28px;
     width: 28px;
+    z-index: 5;
 }
 
 .itemsQuality {
     color: value(D20-60) !important;
     margin: 1rem 0 !important;
+}
+
+.searchWapper {
+    position: relative;
 }

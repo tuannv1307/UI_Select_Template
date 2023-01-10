@@ -134,6 +134,8 @@ describe("FilterOptions.cy.tsx", () => {
 
   it("Show mount onChange input", () => {
     cy.viewport("macbook-15");
+    const handleChange = cy.spy().as("handleChange");
+
     cy.mount(
       <Provider store={store}>
         <FilterOptions
@@ -143,13 +145,12 @@ describe("FilterOptions.cy.tsx", () => {
           isDisabled={false}
           isLoadingInput={true}
           isSearchOnline={true}
+          hanldeOnchangeSearch={handleChange}
         />
       </Provider>
     );
     cy.get('[data-hook="filter-options"]');
-    cy.get('[data-hook="input-search"]')
-      .invoke("val", "lll")
-      .should("have.value", "lll")
-      .and("have.css", "border-color", "rgb(0, 123, 219)");
+    cy.get('[data-hook="input-search"]').type("a");
+    cy.get("@handleChange").should("be.calledWithExactly", "a");
   });
 });
