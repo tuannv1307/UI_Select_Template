@@ -18,7 +18,7 @@ export type FilterOptionsProps = {
   isSearchOnline?: boolean;
   flatArrDataSelect?: DATA_UI[];
   inputSearch?: string;
-  hanldeOnchangeSearch?: (value?: string) => void;
+  hanldeOnchangeSearch?: (value: string) => void;
   isClearable?: boolean;
   isSearchable?: boolean;
   isDisabled?: boolean;

@@ -115,8 +115,8 @@ const data = [
 const store = initStore();
 
 describe("FilterOptions.cy.tsx", () => {
-  cy.viewport("macbook-15");
   it("Show mount", () => {
+    cy.viewport("macbook-15");
     cy.mount(
       <Provider store={store}>
         <FilterOptions

@@ -140,8 +140,8 @@ const SelectOptions = ({
       dispatch(addSelectoptions(newArrSelected));
   }, [arrSelectedData, dispatch, flatArrDataSelect, typeSelect]);
 
-  const hanldeOnchangeSearch = (value?: string) => {
-    value && setInputSearch(value);
+  const hanldeOnchangeSearch = (value: string) => {
+    setInputSearch(value);
     setIsFirstLoading(false);
   };
 
@@ -323,7 +323,7 @@ const SelectOptions = ({
                             }
                           />
                         }
-                        data-hook="delete-item"
+                        dataHook="delete-item"
                       >
                         {opt?.label}
                       </Button>

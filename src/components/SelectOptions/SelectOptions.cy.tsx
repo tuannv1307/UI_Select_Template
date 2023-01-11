@@ -127,7 +127,7 @@ describe("SelectOptions.cy.tsx", () => {
     cy.get('[data-hook="item-options"] [data-hook="number-group"]')
       .eq(0)
       .should("have.text", 8);
-    cy.get('[data-hook="input-search"]').focus().type("wa");
+    cy.get('[data-hook="input-search"]').type("wa");
     cy.get('[data-hook="item-options"]').eq(0).click();
     cy.get('[data-hook="item-options"]')
       .eq(0)
@@ -156,7 +156,7 @@ describe("SelectOptions.cy.tsx", () => {
     cy.get('[data-hook="item-options"] [data-hook="number-group"]')
       .eq(0)
       .should("have.text", 8);
-    cy.get('[data-hook="input-search"]').focus().type("wa");
+    cy.get('[data-hook="input-search"]').type("wa");
     cy.get('[data-hook="item-options"]').eq(0).click();
     cy.get('[data-hook="item-options"]')
       .eq(0)
@@ -185,7 +185,7 @@ describe("SelectOptions.cy.tsx", () => {
       </Provider>
     );
     cy.get('[data-hook="Ui_Select"]').click();
-    cy.get('[data-hook="input-search"]').focus().type("ba");
+    cy.get('[data-hook="input-search"]').type("ba");
     cy.get('[data-hook="item-options"]')
       .eq(0)
       .trigger("keydown", { code: "Space" });
@@ -291,7 +291,6 @@ describe("SelectOptions.cy.tsx", () => {
       .trigger("keydown", { key: "Enter" });
     cy.get('[data-hook="delete-item"]').eq(1).trigger("click");
     cy.get('[data-hook="delete-all"]').trigger("click");
-    cy.get('[data-hook="input-search"]').clear();
   });
 
   it("Show mount with type render tree: group_tree and select is single with options select options", () => {
