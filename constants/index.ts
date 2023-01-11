@@ -1,5 +1,4 @@
 import _ from "lodash";
-import type { DATA_UI } from "../stores/ReduxStore";
 
 export const dataUiSelect = [
   {
@@ -134,7 +133,7 @@ export const dataUiSelect = [
   },
 ];
 
-export const flatArrData = (arrData?: []) => {
+export const flatArrData = (arrData?: DATA_UI[]) => {
   const newArr: DATA_UI[] = [];
   const handleArr = (arrData?: DATA_UI[] | undefined) => {
     _.forEach(arrData, (item) => {
@@ -157,20 +156,25 @@ export const flatArrData = (arrData?: []) => {
   return newArr;
 };
 
-export const arrdataRecursive = (arr?: any, currentLevel = 1, path = "") => {
+export const arrdataRecursive = (
+  arr?: DATA_UI[],
+  currentLevel = 1,
+  path = ""
+) => {
   const newArrData: DATA_UI[] | undefined = [];
 
   _.forEach(arr, (item) => {
     const currentPath: string = `${path} / ${item.label}`;
     item = { ...item };
     item["level"] = currentLevel;
-    item["path"] =
-      currentLevel === 0
-        ? ""
-        : currentPath.substring(
-            3,
-            currentPath.length - item?.label?.length - 3
-          );
+    if (!_.isUndefined(item.label))
+      item["path"] =
+        currentLevel === 0
+          ? ""
+          : currentPath.substring(
+              3,
+              currentPath.length - item.label.length - 3
+            );
     if (
       item.value === "Group-7" ||
       item.value === "Group-27" ||

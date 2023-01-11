@@ -1,21 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { ActionTypes } from "./ActionTypes";
-
-export type DATA_UI = {
-  value?: string;
-  label?: string;
-  groupOptions?: [];
-  level?: number;
-  path?: string;
-  isGroup?: boolean;
-};
+import _ from "lodash";
 
 export type UiSelect = {
-  dataOptions?: {}[];
-  flatDataOptions?: {}[];
+  dataOptions?: DATA_UI[];
+  flatDataOptions?: DATA_UI[];
   selectedData?: DATA_UI[];
   isInputSearchRef?: boolean;
-  elementFocused?: undefined;
+  elementFocused?: HTMLElement;
   isLoading?: boolean;
 };
 
@@ -58,6 +50,7 @@ const AppStore = createSlice<UiSelect, ActionTypes>({
     },
 
     changeElementFocused: (state, action) => {
+      // if (!_.isUndefined(state.elementFocused))
       state.elementFocused = action.payload;
     },
 

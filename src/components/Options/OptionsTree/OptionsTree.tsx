@@ -1,4 +1,4 @@
-import { memo, KeyboardEvent, useRef, useState } from "react";
+import { memo, KeyboardEvent, useRef, useState, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import $ from "jquery";
@@ -9,16 +9,15 @@ import {
   SquareRatio,
   SquareRatioChecked,
 } from "@wix/wix-ui-icons-common";
-import { st, classes } from "./OptionsTree.st.css";
 import {
-  DATA_UI,
   UiSelect,
   changeElementFocused,
   setIsInputSearchRef,
 } from "../../../stores/ReduxStore";
+import { st, classes } from "./OptionsTree.st.css";
 
 export type OptionsTreeProps = {
-  data?: any;
+  data: DATA_UI;
   typeRender?: "single" | "tree";
   typeSelect?: "single" | "multi";
   isSearchOnline?: boolean;
@@ -103,14 +102,18 @@ const OptionsTree = ({
     $(currentRef)[0].current || undefined;
   const isHover = currentRef && element === dataStore.elementFocused;
 
-  const handleMouseMove = () => {
+  const handleMouseMove = useCallback(() => {
     if (isKeyDowning !== undefined && !isKeyDowning) {
       dispatch(changeElementFocused(element));
     }
-  };
+  }, [dispatch, element, isKeyDowning]);
 
+  console.log("d");
   return (
-    <li className={st(classes.root)} data-hook="options-tree">
+    <li
+      className={st(classes.root, { isBorder: data.level === 1 })}
+      data-hook="options-tree"
+    >
       <div
         className={st(classes.itemTrees, {
           isBorder: hashChild && isShowOption,

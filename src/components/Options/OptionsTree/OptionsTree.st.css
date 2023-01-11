@@ -1,6 +1,7 @@
 @st-import [B40, D40, D60] from "mgz-ui/dist/src/Foundation/stylable/colors.st.css";
 
 .root {
+    -st-states: isBorder;
     position: relative;
 }
 
@@ -18,7 +19,7 @@
     height: 1.07rem;
 }
 
-.root .listItemTree .root::after {
+.root::after {
     border-top: 1px dashed value(D40);
     height: 1px;
     top: 16px;
@@ -26,6 +27,10 @@
     content: '';
     left: -26px;
     position: absolute;
+}
+
+.root:isBorder::after {
+    border-top: none;
 }
 
 .root .itemTrees {

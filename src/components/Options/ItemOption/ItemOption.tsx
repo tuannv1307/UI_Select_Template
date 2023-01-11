@@ -1,11 +1,10 @@
-import { KeyboardEvent, memo, useRef } from "react";
+import { KeyboardEvent, memo, useCallback, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import $ from "jquery";
 import { SquareRatio, SquareRatioChecked } from "@wix/wix-ui-icons-common";
 import Text from "mgz-ui/dist/src/Text";
 import {
-  DATA_UI,
   UiSelect,
   changeElementFocused,
   setIsInputSearchRef,
@@ -32,7 +31,7 @@ const ItemOption = ({
   const dataStore: UiSelect = useSelector(
     (state: { ui_select: UiSelect }) => state.ui_select
   );
-  const selectedData: any = dataStore.selectedData;
+  const selectedData: DATA_UI[] | undefined = dataStore.selectedData;
   const currentRef = useRef<HTMLDivElement>(null);
   const isInputSearchRef = dataStore.isInputSearchRef;
   const hashChild = opt.groupOptions ? true : false;
@@ -65,10 +64,11 @@ const ItemOption = ({
     $(currentRef)[0].current || undefined;
   const isHover = element && currentRef && element === dataStore.elementFocused;
 
-  const handleOnMouseMove = () => {
+  const handleOnMouseMove = useCallback(() => {
     dispatch(changeElementFocused(element));
-  };
+  }, [dispatch, element]);
 
+  console.log("c");
   return (
     <div
       className={st(classes.root, {
@@ -138,9 +138,11 @@ const ItemOption = ({
           )}
         </>
       )}
+
       <Text size="medium" className={st(classes.labelItem)}>
         {opt.label}
       </Text>
+
       {typeRender === "single" ? (
         ""
       ) : (
@@ -148,6 +150,7 @@ const ItemOption = ({
           <>{opt.path !== " / " && opt.path}</>
         </Text>
       )}
+
       {typeGroup ? (
         <Text className={st(classes.numberGroup)} dataHook="number-group">
           {opt?.groupOptions && _.size(opt?.groupOptions)}

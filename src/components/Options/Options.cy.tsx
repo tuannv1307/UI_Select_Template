@@ -1,12 +1,20 @@
 import { Provider } from "react-redux";
-import { arrdataRecursive, dataUiSelect, flatArrData } from "../../constants";
+import {
+  arrdataRecursive,
+  dataUiSelect,
+  flatArrData,
+} from "../../../constants";
 import { initStore } from "../../stores/store";
 import Options from "./Options";
 
-const data_UiSelect: any = dataUiSelect;
+const data_UiSelect: DATA_UI[] = dataUiSelect;
 const store = initStore();
 
 describe("Options", () => {
+  beforeEach(() => {
+    cy.viewport("macbook-15");
+  });
+
   it("Show mount with render is single and select is single ", () => {
     const handleSpy = cy.spy().as("handleSpyClose");
 
@@ -23,7 +31,7 @@ describe("Options", () => {
       </Provider>
     );
 
-    cy.get('[data-hook="options"]').viewport("macbook-15");
+    cy.get('[data-hook="options"]');
     cy.get('[data-hook="btn-done"]').click();
     cy.get("@handleSpyClose").should("be.calledOnce");
     cy.get('[data-hook="item-option-single-no_group"]');
@@ -46,7 +54,7 @@ describe("Options", () => {
         />
       </Provider>
     );
-    cy.get('[data-hook="options"]').viewport("macbook-15");
+    cy.get('[data-hook="options"]');
     cy.get('[data-hook="btn-done"]').click();
     cy.get("@handleSpyClose").should("be.calledOnce");
     cy.get('[data-hook="item-option-group_single"]');
@@ -80,7 +88,7 @@ describe("Options", () => {
         />
       </Provider>
     );
-    cy.get('[data-hook="options"]').viewport("macbook-15");
+    cy.get('[data-hook="options"]');
     cy.get('[data-hook="btn-done"]').click();
     cy.get("@handleSpyClose").should("be.calledOnce");
     cy.get('[data-hook="item-option-single-no_group"]');
@@ -111,7 +119,7 @@ describe("Options", () => {
         />
       </Provider>
     );
-    cy.get('[data-hook="options"]').viewport("macbook-15");
+    cy.get('[data-hook="options"]');
     cy.get('[data-hook="btn-done"]').click();
     cy.get("@handleSpyClose").should("be.calledOnce");
     cy.get('[data-hook="item-option-group_single"]');
@@ -146,7 +154,7 @@ describe("Options", () => {
         />
       </Provider>
     );
-    cy.get('[data-hook="options"]').viewport("macbook-15");
+    cy.get('[data-hook="options"]');
     cy.get('[data-hook="btn-done"]').click();
     cy.get("@handleSpyClose").should("be.calledOnce");
     cy.get('[data-hook="item-option-tree-no_group"]');
@@ -173,7 +181,7 @@ describe("Options", () => {
         />
       </Provider>
     );
-    cy.get('[data-hook="options"]').viewport("macbook-15");
+    cy.get('[data-hook="options"]');
     cy.get('[data-hook="btn-done"]').click();
     cy.get("@handleSpyClose").should("be.calledOnce");
     cy.get('[data-hook="item-option-tree-no_group"]');
@@ -208,7 +216,7 @@ describe("Options", () => {
         />
       </Provider>
     );
-    cy.get('[data-hook="options"]').viewport("macbook-15");
+    cy.get('[data-hook="options"]');
     cy.get('[data-hook="btn-done"]').click();
     cy.get("@handleSpyClose").should("be.calledOnce");
     cy.get('[data-hook="item-option-tree-no_group"]');
@@ -235,7 +243,7 @@ describe("Options", () => {
         />
       </Provider>
     );
-    cy.get('[data-hook="options"]').viewport("macbook-15");
+    cy.get('[data-hook="options"]');
     cy.get('[data-hook="btn-done"]').click();
     cy.get("@handleSpyClose").should("be.calledOnce");
     cy.get('[data-hook="item-option-tree-group_tree"]');
@@ -271,7 +279,7 @@ describe("Options", () => {
         />
       </Provider>
     );
-    cy.get('[data-hook="options"]').viewport("macbook-15");
+    cy.get('[data-hook="options"]');
     cy.get('[data-hook="btn-done"]').click();
     cy.get("@handleSpyClose").should("be.calledOnce");
     cy.get('[data-hook="item-option-tree-group_tree"]');
@@ -309,7 +317,7 @@ describe("Options", () => {
         />
       </Provider>
     );
-    cy.get('[data-hook="options"]').viewport("macbook-15");
+    cy.get('[data-hook="options"]');
     cy.get('[data-hook="btn-done"]').click();
     cy.get("@handleSpyClose").should("be.calledOnce");
     cy.get('[data-hook="item-option-tree-group_tree"]');

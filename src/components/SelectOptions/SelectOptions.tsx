@@ -4,6 +4,7 @@ import {
   memo,
   useCallback,
   useEffect,
+  useMemo,
   useState,
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -24,11 +25,14 @@ import {
   initDataUI,
   initFlatData,
   changeElementFocused,
-  DATA_UI,
   setIsLoading,
   addSelectoptions,
 } from "../../stores/ReduxStore";
-import { arrdataRecursive, dataUiSelect, flatArrData } from "../../constants";
+import {
+  arrdataRecursive,
+  dataUiSelect,
+  flatArrData,
+} from "../../../constants";
 import FilterOptions from "../FilterOptions";
 import Options from "../Options";
 import { st, classes } from "./SelectOptions.st.css";
@@ -65,7 +69,7 @@ const SelectOptions = ({
   const isSearchable = true;
   const isDisabled = false;
   const isLoadingInput = true;
-  const optionsSelect: any = data.dataOptions;
+  const optionsSelect: DATA_UI[] | undefined = data.dataOptions;
   const selectedData: DATA_UI[] | undefined = data.selectedData;
   let flatArrDataSelect: DATA_UI[] | undefined = data.flatDataOptions;
 
@@ -111,9 +115,11 @@ const SelectOptions = ({
     }
   }, [dispatch, getOptions, isSearchOnline, options]);
 
+  const flatData = useMemo(() => flatArrData(optionsSelect), [optionsSelect]);
+
   useEffect(() => {
-    dispatch(initFlatData({ flatData: flatArrData(optionsSelect) }));
-  }, [optionsSelect, dispatch]);
+    dispatch(initFlatData({ flatData: flatData }));
+  }, [flatData, dispatch]);
 
   useEffect(() => {
     let newArrSelected: DATA_UI[] = [];
@@ -144,6 +150,7 @@ const SelectOptions = ({
     setInputSearch(value);
     setIsFirstLoading(false);
   };
+  console.log("a");
 
   if (inputSearch !== "") {
     flatArrDataSelect = _.filter(flatArrDataSelect, (item: DATA_UI) =>

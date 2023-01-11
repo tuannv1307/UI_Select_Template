@@ -1,15 +1,16 @@
-import { memo, useEffect, useRef } from "react";
+import {
+  HTMLInputTypeAttribute,
+  LegacyRef,
+  memo,
+  useEffect,
+  useRef,
+} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import Input from "mgz-ui/dist/src/Input";
 import Text from "mgz-ui/dist/src/Text";
 import Search from "wix-ui-icons-common/Search";
-import {
-  DATA_UI,
-  UiSelect,
-  changeElementFocused,
-} from "../../stores/ReduxStore";
-
+import { UiSelect, changeElementFocused } from "../../stores/ReduxStore";
 import { st, classes } from "./FilterOptions.st.css";
 
 export type FilterOptionsProps = {
@@ -37,7 +38,7 @@ const FilterOptions = ({
   const dataStore: UiSelect = useSelector(
     (state: { ui_select: UiSelect }) => state.ui_select
   );
-  const refInputFilter = useRef<any>(null);
+  const refInputFilter = useRef<HTMLInputElement | LegacyRef<Input>>(null);
   const isInnputRef = dataStore.isInputSearchRef;
   const isLoading = dataStore.isLoading;
 
@@ -74,7 +75,7 @@ const FilterOptions = ({
           )}
 
           {isSearchable && (
-            <div className={classes.searchWapper}>
+            <div className={classes.searchWapper} data-hook="search-wapper">
               <Search className={st(classes.inconSearch)} />
               <Input
                 size="medium"
@@ -85,9 +86,10 @@ const FilterOptions = ({
                   hanldeOnchangeSearch(e.target.value)
                 }
                 value={inputSearch}
-                ref={refInputFilter}
                 disabled={isDisabled}
                 dataHook="input-search"
+                ref={refInputFilter}
+                tabIndex={0}
               />
             </div>
           )}
@@ -95,13 +97,19 @@ const FilterOptions = ({
           {inputSearch !== "" && (
             <>
               {!isSearchOnline && (
-                <Text className={st(classes.itemsQuality)}>
+                <Text
+                  className={st(classes.itemsQuality)}
+                  dataHook="quality-options"
+                >
                   {_.size(flatArrDataSelect)} options
                 </Text>
               )}
 
               {!isLoading && isSearchOnline && (
-                <Text className={st(classes.itemsQuality)}>
+                <Text
+                  className={st(classes.itemsQuality)}
+                  dataHook="quality-options"
+                >
                   {_.size(flatArrDataSelect)} options
                 </Text>
               )}

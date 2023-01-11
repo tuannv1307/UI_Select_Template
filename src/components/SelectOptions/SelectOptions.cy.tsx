@@ -1,14 +1,17 @@
 import { Provider } from "react-redux";
-import { dataUiSelect } from "../../constants";
+import { dataUiSelect } from "../../../constants";
 import { initStore } from "../../stores/store";
 import SelectOptions from "./SelectOptions";
 
-const data: any = dataUiSelect;
+const data: DATA_UI[] = dataUiSelect;
 const store = initStore();
 
 describe("SelectOptions.cy.tsx", () => {
-  it("Show mount with type render single:  select is single options", () => {
+  beforeEach(() => {
     cy.viewport("macbook-15");
+  });
+
+  it("Show mount with type render single:  select is single options", () => {
     cy.mount(
       <Provider store={store}>
         <SelectOptions typeRender="single" typeSelect="single" options={data} />
@@ -20,7 +23,6 @@ describe("SelectOptions.cy.tsx", () => {
   });
 
   it("Show mount with type render single:  select is multi options", () => {
-    cy.viewport("macbook-15");
     cy.mount(
       <Provider store={store}>
         <SelectOptions typeRender="single" typeSelect="multi" options={data} />
@@ -62,7 +64,6 @@ describe("SelectOptions.cy.tsx", () => {
   });
 
   it("Show mount with type render single: select is single options with input", () => {
-    cy.viewport("macbook-15");
     cy.mount(
       <Provider store={store}>
         <SelectOptions typeRender="single" typeSelect="single" options={data} />
@@ -86,7 +87,6 @@ describe("SelectOptions.cy.tsx", () => {
   });
 
   it("Show mount with type render single: select is multi options with input", () => {
-    cy.viewport("macbook-15");
     cy.mount(
       <Provider store={store}>
         <SelectOptions typeRender="single" typeSelect="multi" options={data} />
@@ -110,7 +110,6 @@ describe("SelectOptions.cy.tsx", () => {
   });
 
   it("Show mount with type render single: group_single and select is single with options select options", () => {
-    cy.viewport("macbook-15");
     cy.mount(
       <Provider store={store}>
         <SelectOptions
@@ -139,7 +138,6 @@ describe("SelectOptions.cy.tsx", () => {
   });
 
   it("Show mount with type render single: group_single and select is multi with options select options", () => {
-    cy.viewport("macbook-15");
     cy.mount(
       <Provider store={store}>
         <SelectOptions
@@ -170,7 +168,6 @@ describe("SelectOptions.cy.tsx", () => {
   });
 
   it("Show mount with type render single: search online with select single", () => {
-    cy.viewport("macbook-15");
     cy.mount(
       <Provider store={store}>
         <SelectOptions
@@ -196,7 +193,6 @@ describe("SelectOptions.cy.tsx", () => {
   });
 
   it("Show mount with type render single: search online with select multi", () => {
-    cy.viewport("macbook-15");
     cy.mount(
       <Provider store={store}>
         <SelectOptions
@@ -226,7 +222,6 @@ describe("SelectOptions.cy.tsx", () => {
   });
 
   it("Show mount with type render tree:  select is single options", () => {
-    cy.viewport("macbook-15");
     cy.mount(
       <Provider store={store}>
         <SelectOptions
@@ -259,7 +254,6 @@ describe("SelectOptions.cy.tsx", () => {
   });
 
   it("Show mount with type render tree:  select is multi options", () => {
-    cy.viewport("macbook-15");
     cy.mount(
       <Provider store={store}>
         <SelectOptions
@@ -294,7 +288,6 @@ describe("SelectOptions.cy.tsx", () => {
   });
 
   it("Show mount with type render tree: group_tree and select is single with options select options", () => {
-    cy.viewport("macbook-15");
     cy.mount(
       <Provider store={store}>
         <SelectOptions

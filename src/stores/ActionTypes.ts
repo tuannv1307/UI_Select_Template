@@ -1,10 +1,10 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { DATA_UI, UiSelect } from "./ReduxStore";
+import type { UiSelect } from "./ReduxStore";
 
 export type ActionTypes = {
   initDataUI: (
     state: UiSelect,
-    action: PayloadAction<{ dataOptions: any[] }>
+    action: PayloadAction<{ dataOptions: DATA_UI[] }>
   ) => void;
 
   initFlatData: (
@@ -24,7 +24,10 @@ export type ActionTypes = {
     action: PayloadAction<boolean>
   ) => void;
 
-  changeElementFocused: (state: UiSelect, action: PayloadAction<any>) => void;
+  changeElementFocused: (
+    state: UiSelect,
+    action: PayloadAction<HTMLElement | undefined>
+  ) => void;
 
   setIsLoading: (state: UiSelect, action: PayloadAction<boolean>) => void;
 };

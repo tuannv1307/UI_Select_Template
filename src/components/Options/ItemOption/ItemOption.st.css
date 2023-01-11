@@ -1,4 +1,4 @@
-@st-import [D60, B40, D20-60] from "mgz-ui/dist/src/Foundation/stylable/colors.st.css";
+@st-import [B40, D60, D20-60] from "mgz-ui/dist/src/Foundation/stylable/colors.st.css";
 
 .root {
     -st-states: active, isHover, isGroup, isDisable;

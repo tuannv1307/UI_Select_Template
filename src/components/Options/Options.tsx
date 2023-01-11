@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import Button from "mgz-ui/dist/src/Button";
 import Text from "mgz-ui/dist/src/Text";
-import { DATA_UI, UiSelect, addSelectoptions } from "../../stores/ReduxStore";
+import { UiSelect, addSelectoptions } from "../../stores/ReduxStore";
 import OptionsTree from "./OptionsTree";
 import ItemOption from "./ItemOption";
 import { st, classes } from "./Options.st.css";
@@ -82,6 +82,7 @@ const Options = ({
     _.isFunction(setIsFirstLoading) && setIsFirstLoading(false);
   };
 
+  console.log("b");
   return (
     <div className={st(classes.root)} data-hook="options">
       {isLoading && isSearchOnline ? (
