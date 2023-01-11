@@ -1,11 +1,8 @@
 import { Provider } from "react-redux";
-import {
-  arrdataRecursive,
-  dataUiSelect,
-  flatArrData,
-} from "../../../constants";
+import { dataUiSelect } from "../../../constants";
 import { initStore } from "../../stores/store";
 import Options from "./Options";
+import { arrdataRecursive, flatArrData } from "../../ultils";
 
 const data_UiSelect: DATA_UI[] = dataUiSelect;
 const store = initStore();

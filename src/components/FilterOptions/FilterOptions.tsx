@@ -1,10 +1,4 @@
-import {
-  HTMLInputTypeAttribute,
-  LegacyRef,
-  memo,
-  useEffect,
-  useRef,
-} from "react";
+import { memo, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import _ from "lodash";
 import Input from "mgz-ui/dist/src/Input";
@@ -38,7 +32,7 @@ const FilterOptions = ({
   const dataStore: UiSelect = useSelector(
     (state: { ui_select: UiSelect }) => state.ui_select
   );
-  const refInputFilter = useRef<HTMLInputElement | LegacyRef<Input>>(null);
+  const refInputFilter = useRef<Input | null>(null);
   const isInnputRef = dataStore.isInputSearchRef;
   const isLoading = dataStore.isLoading;
 

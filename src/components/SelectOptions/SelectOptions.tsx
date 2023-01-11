@@ -28,14 +28,11 @@ import {
   setIsLoading,
   addSelectoptions,
 } from "../../stores/ReduxStore";
-import {
-  arrdataRecursive,
-  dataUiSelect,
-  flatArrData,
-} from "../../../constants";
+import { dataUiSelect } from "../../../constants";
 import FilterOptions from "../FilterOptions";
 import Options from "../Options";
 import { st, classes } from "./SelectOptions.st.css";
+import { arrdataRecursive, flatArrData } from "../../ultils";
 
 export type SelectOptionsProps = {
   typeRender?: "single" | "tree";
